@@ -1,0 +1,15 @@
+-- Create the table
+CREATE TABLE Students_marksheet (
+  Student_Name VARCHAR(30),
+  Roll_no INT,
+  Marks INT,
+  DOB DATE
+);
+
+-- Insert data into the table
+INSERT INTO Students_marksheet (Student_Name, Roll_no, Marks, DOB) VALUES
+  ('Ram', 1, 100, '2007-02-03'),
+  ('Shyam', 5, 99, '2008-01-10'),
+  ('Raju', 24, 80, '2006-12-23'),
+  ('Ravi', 30, 85, '2007-05-15'),
+  ('Jiya', 42, 90, '2007-06-30');
