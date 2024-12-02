@@ -1,0 +1,5 @@
+Code -
+ALTER TABLE Students_marksheet
+DROP COLUMN Sl_no;
+
+
