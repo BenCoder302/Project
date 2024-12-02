@@ -1,0 +1,9 @@
+Code - 
+SELECT SUM(Marks) AS TotalMarks FROM Students_marksheet;
+
+Output - 
+╒════════════╕
+│ TotalMarks │
+╞════════════╡
+│ 454        │
+╘════════════╛
