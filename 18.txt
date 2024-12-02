@@ -1,0 +1,17 @@
+Code - 
+SELECT Student_Name FROM Students_marksheet;
+
+Output - 
+╒══════════════╕
+│ Student_Name │
+╞══════════════╡
+│ Ram          │
+├──────────────┤
+│ Shyam        │
+├──────────────┤
+│ Raju         │
+├──────────────┤
+│ Ravi         │
+├──────────────┤
+│ Jiya         │
+╘══════════════╛
