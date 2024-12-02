@@ -1,0 +1,19 @@
+Code - 
+
+ALTER TABLE Students_marksheet
+ADD COLUMN Sl_no INT;
+
+UPDATE Students_marksheet
+SET Sl_no = 1 WHERE Student_Name = 'Ram';
+
+UPDATE Students_marksheet
+SET Sl_no = 2 WHERE Student_Name = 'Shyam';
+
+UPDATE Students_marksheet
+SET Sl_no = 3 WHERE Student_Name = 'Raju';
+
+UPDATE Students_marksheet
+SET Sl_no = 4 WHERE Student_Name = 'Ravi';
+
+UPDATE Students_marksheet
+SET Sl_no = 5 WHERE Student_Name = 'Jiya';
