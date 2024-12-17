@@ -17,7 +17,6 @@ def connect_and_create_database():
     cur.execute("USE quiz;")
     
 def create_table_questions():
-    cur.execute("DROP TABLE questions");
     cur.execute("""
         CREATE TABLE IF NOT EXISTS questions (
             id INT AUTO_INCREMENT PRIMARY KEY,
@@ -51,6 +50,8 @@ def insert_questions():
                 cur.execute("""INSERT INTO questions(question, option_1, option_2, option_3, option_4, correct_answer) VALUES ('{}', '{}', '{}', '{}', '{}', '{}')""".format(question, option_1, option_2, option_3, option_4, correct_answer))
                 i += 6
         con.commit()
+        print("Updated questions succesfully ...", end="")
+        input()
 
 def show_questions():
     cur.execute("SELECT * from questions;")
@@ -107,14 +108,12 @@ def start_quiz():
         print("Invalid choice! Defaulting to Easy.")
         num_questions = 5
 
-    # Start the quiz with the selected number of questions
     score = 0
     questions = fetch_all_questions()
     total_questions = len(questions)
     
-    # Shuffle and select the required number of questions based on difficulty
     random.shuffle(questions)
-    for question_data in questions[:num_questions]:  # Select only the specified number of questions
+    for question_data in questions[:num_questions]:  
         if ask_question(question_data):
             score += 1
 
@@ -137,9 +136,9 @@ def print_title():
 
     """
     print(title)
+    print("This is a quiz program which uses mysql database. It loads questions from a file 'load.txt'.")
 
 def user_menu():
-    print_title()
     while True:
         print("\n===== Quiz Menu =====")
         print("1. Start Quiz")
@@ -151,6 +150,7 @@ def user_menu():
         if choice == "1":
             start_quiz()
         elif choice == "2":
+            cur.execute("DROP TABLE questions");
             create_table_questions()
             insert_questions()
         elif choice == "3":
@@ -162,4 +162,6 @@ def user_menu():
 
 if __name__ == "__main__":
     connect_and_create_database()
+    create_table_questions()
+    print_title()
     user_menu()
