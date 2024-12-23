@@ -42,7 +42,7 @@ def insert_questions():
             option_3 = lines[i + 3][3:].strip()  
             option_4 = lines[i + 4][3:].strip()          
             correct_answer_line = lines[i + 5].strip()
-            correct_answer = int(correct_answer_line.split('.')[0].strip()) 
+            correct_answer = int(correct_answer_line)
 
             cur.execute("""INSERT INTO questions(question, option_1, option_2, option_3, option_4, correct_answer) VALUES ('{}', '{}', '{}', '{}', '{}', '{}')""".format(question, option_1, option_2, option_3, option_4, correct_answer))
             i += 6
