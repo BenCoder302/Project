@@ -20,7 +20,7 @@ def create_table_questions():
     cur.execute("""
         CREATE TABLE IF NOT EXISTS questions (
             id INT AUTO_INCREMENT PRIMARY KEY,
-            question TEXT,
+            question VARCHAR(500),
             option_1 VARCHAR(255),
             option_2 VARCHAR(255),
             option_3 VARCHAR(255),
@@ -31,27 +31,24 @@ def create_table_questions():
 
 def insert_questions():
     with open("load.txt", "r") as file:
-        lines = file.readlines()
+        lines = [line.strip() for line in file.readlines() if line.strip()]  
         i = 0
-        with open("load.txt", "r") as file:
-            lines = [line.strip() for line in file.readlines() if line.strip()]  
-            i = 0
-            while i < len(lines):
-                if i + 5 >= len(lines):
-                    break  
-                question = lines[i]  
-                option_1 = lines[i + 1][3:].strip()  
-                option_2 = lines[i + 2][3:].strip()   
-                option_3 = lines[i + 3][3:].strip()  
-                option_4 = lines[i + 4][3:].strip()          
-                correct_answer_line = lines[i + 5].strip()
-                correct_answer = int(correct_answer_line.split('.')[0].strip()) 
+        while i < len(lines):
+            if i + 5 >= len(lines):
+                break  
+            question = lines[i]  
+            option_1 = lines[i + 1][3:].strip()  
+            option_2 = lines[i + 2][3:].strip()   
+            option_3 = lines[i + 3][3:].strip()  
+            option_4 = lines[i + 4][3:].strip()          
+            correct_answer_line = lines[i + 5].strip()
+            correct_answer = int(correct_answer_line.split('.')[0].strip()) 
 
-                cur.execute("""INSERT INTO questions(question, option_1, option_2, option_3, option_4, correct_answer) VALUES ('{}', '{}', '{}', '{}', '{}', '{}')""".format(question, option_1, option_2, option_3, option_4, correct_answer))
-                i += 6
-        con.commit()
-        print("Updated questions succesfully ...", end="")
-        input()
+            cur.execute("""INSERT INTO questions(question, option_1, option_2, option_3, option_4, correct_answer) VALUES ('{}', '{}', '{}', '{}', '{}', '{}')""".format(question, option_1, option_2, option_3, option_4, correct_answer))
+            i += 6
+    con.commit()
+    print("Updated questions succesfully ...", end="")
+    input()
 
 def show_questions():
     cur.execute("SELECT * from questions;")
